@@ -1,0 +1,26 @@
+{% extends "basic_app/base.html" %}
+
+{% block body_block%}
+
+<div class="jumbotron">
+
+  {% if registered %}
+    <h1>Thank you for Registering!</h1>
+
+  {% else %}
+    <h1>Register Here :</h1>
+    <h3>Please fill the form</h3>
+
+    <form enctype="multipart/form-data"  method="POST">      <!-- enctype="" is used for the media file -->
+
+      {% csrf_token %}
+      {{ user_form.as_p }}                                   <!-- grab the attributes from forms.py [UserForm]-->
+      {{ profile_form.as_p }}                                 <!-- grab the attributes from forms.py [UserProfileInfo]-->
+      <input type="submit" class="btn btn-success" value="Register">
+    </form>
+
+  {% endif %}
+
+</div>
+
+{% endblock %}
